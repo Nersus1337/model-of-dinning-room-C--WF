@@ -1,0 +1,11 @@
+C:\Users\User\source\repos\Dining_room_WinForms\Dining_room_WinForms\bin\Debug\Dining_room_WinForms.exe.config
+C:\Users\User\source\repos\Dining_room_WinForms\Dining_room_WinForms\bin\Debug\Dining_room_WinForms.exe
+C:\Users\User\source\repos\Dining_room_WinForms\Dining_room_WinForms\bin\Debug\Dining_room_WinForms.pdb
+C:\Users\User\source\repos\Dining_room_WinForms\Dining_room_WinForms\obj\Debug\Dining_room_WinForms.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\Dining_room_WinForms\Dining_room_WinForms\obj\Debug\Dining_room_WinForms.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\source\repos\Dining_room_WinForms\Dining_room_WinForms\obj\Debug\Dining_room_WinForms.Form1.resources
+C:\Users\User\source\repos\Dining_room_WinForms\Dining_room_WinForms\obj\Debug\Dining_room_WinForms.Properties.Resources.resources
+C:\Users\User\source\repos\Dining_room_WinForms\Dining_room_WinForms\obj\Debug\Dining_room_WinForms.csproj.GenerateResource.cache
+C:\Users\User\source\repos\Dining_room_WinForms\Dining_room_WinForms\obj\Debug\Dining_room_WinForms.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\Dining_room_WinForms\Dining_room_WinForms\obj\Debug\Dining_room_WinForms.exe
+C:\Users\User\source\repos\Dining_room_WinForms\Dining_room_WinForms\obj\Debug\Dining_room_WinForms.pdb
