@@ -24,6 +24,7 @@ namespace Dining_room_WinForms
 
         List<Visitor> visitors = new List<Visitor>();
         List<Dish> dishes = new List<Dish>();
+        List<Table> tables = new List<Table>();
 
         private Graphics graphics;
         private int resolution = 20;
@@ -99,8 +100,22 @@ namespace Dining_room_WinForms
             visitors.Add(new Visitor(45, 45, "Grigory", 8000, 3, true));
             visitors.Add(new Visitor(43, 43, "Efim", 18000, 7, true));
 
-            dishes.Add(new Dish(20, 18, "Sup", 180, 2));
-            dishes.Add(new Dish(25, 18, "Salad", 100, 5));
+            dishes.Add(new Dish(20, 18, "Sup", 180, 2, 4));
+            dishes.Add(new Dish(25, 18, "Salad", 100, 5, 2));
+            dishes.Add(new Dish(30, 18, "Tea", 180, 2, 30));
+            dishes.Add(new Dish(35, 18, "Potato", 180, 2, 1));
+            dishes.Add(new Dish(33, 18, "Kotleta", 180, 2, 1));
+
+            tables.Add(new Table(5, 30));
+            tables.Add(new Table(9, 30));
+            tables.Add(new Table(13, 30));
+            tables.Add(new Table(17, 30));
+            tables.Add(new Table(21, 30));
+            tables.Add(new Table(25, 30));
+            tables.Add(new Table(29, 30));
+            tables.Add(new Table(33, 30));
+            //tables.Add(new Table(25, 30));
+            //tables.Add(new Table(25, 30));
         }
 
         private void NextStep()
@@ -108,34 +123,104 @@ namespace Dining_room_WinForms
             ClearPictureBox();
             InitDefaultMap();
 
-            Random random = new Random();
-            //int lastMove = -1;
-
             //Запись координат блюд
             foreach (Dish dish in dishes.ToList())
             {
-                matrix[dish.posX, dish.posY] = 3;
+                if (dish.count != 0)//Если порции еще остались
+                {
+                    matrix[dish.posX, dish.posY] = 3;
+                }
+                else//Если порции закончились, то удаляем блюдо
+                {
+                    //dishes.Remove(dish);
+                }
+            }
+            //Запись координат столиков
+            foreach (Table table in tables.ToList())
+            {
+                matrix[table.posX, table.posY] = 4;
             }
 
-            ///////////////////////////////////////////
-            ///////////////////////////////////////////
-            ///////////////////////////////////////////
 
+            //Координаты временной метки
+            matrix[48, 48] = 10;
+
+            ///////////////////////////////////////////
+            ///////////////////////////////////////////
+            ///////////////////////////////////////////
+           
+            //IMPORTANT
             //Движение посетителей
             foreach (Visitor visitor in visitors)
             {
-                visitor.Move(matrix, random.Next(4));
+                //Посетитель заходит в столовую и сразу идет за едой
+                if ((visitor.haveDishes==false) && (visitor.hungry==true))
+                {
+                    foreach (Dish dish in dishes)
+                    {
+                        if (dish.count > 0)
+                        {
+                            visitor.MoveTo(matrix, dish.posX, dish.posY);
+
+                            //Посетитель берет еду
+                            if ((visitor.posX == dish.posX) && (visitor.posY == dish.posY))
+                            {
+                                dish.count--;
+                                visitor.takeDishes();
+                            }
+
+                            break;
+                        }
+                    }
+                        
+                }
+                
+                //Посетитель идет с едой за стол
+                if ((visitor.haveDishes == true) && (visitor.hungry == true))
+                {
+                    foreach (Table table in tables)
+                    {
+                        if (table.empty == true)
+                        {
+                            visitor.MoveTo(matrix, table.posX, table.posY);
+
+                            //Посетитель ест за столом
+                            if ((visitor.posX == table.posX) && (visitor.posY == table.posY))
+                            {
+                                visitor.hungry = false;
+                                visitor.haveDishes = false;
+                                table.empty = false;
+                                visitor.eat();
+                            }
+                            break;
+                        }
+                    }
+                        
+                }
+                
+                //Если посетитель поел, то он уходит
+                if ((visitor.hungry == false) && (visitor.haveDishes == false))
+                {
+                    visitor.MoveTo(matrix, 48, 48);//На выход
+                }
             }
+
+
+
+
+
+
             //Запись координат посетителей
             foreach (Visitor visitor in visitors.ToList())
             {
                 matrix[visitor.posX, visitor.posY] = 2;
             }
-
-
             //graphics.DrawString(Convert.ToString(visitors[countVisitors].name), new Font("Madani Thin", 8), Brushes.DarkRed, new PointF(i * resolution, j * resolution));
             //countVisitors++;
             //int countVisitors = 0;
+
+
+
             //Отрисовка всех элементов
             for (int i = 0; i < rows; i++)
             {
@@ -155,12 +240,26 @@ namespace Dining_room_WinForms
                     if (matrix[i, j] == 3)
                     {
                         graphics.FillRectangle(Brushes.PaleVioletRed, i * resolution, j * resolution, resolution, resolution);
+                        foreach (Dish dish in dishes)
+                        {
+                            graphics.DrawString(Convert.ToString(dish.name), new Font("Madani Thin", 8), Brushes.Black, new PointF(dish.posX * resolution, dish.posY * resolution));
+                            graphics.DrawString(Convert.ToString(dish.count), new Font("Madani Thin", 8), Brushes.Black, new PointF(dish.posX * resolution, (dish.posY + (float)0.5) * resolution));
+                        }
                     }
-
+                    //Рисование столов
+                    if (matrix[i, j] == 4)
+                    {
+                        graphics.FillRectangle(Brushes.Gray, i * resolution, j * resolution, resolution, resolution);
+                    }
+                    //Временная метка
+                    if (matrix[i, j] == 10)
+                    {
+                        graphics.FillEllipse(Brushes.Yellow, i * resolution, j * resolution, resolution, resolution);
+                    }
                 }
             }
 
-
+            
 
 
         }

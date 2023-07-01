@@ -22,6 +22,10 @@ namespace Dining_room_WinForms
             this.money = money;
             this.spontaneity = spontaneity;
             this.socialize = socialize;
+
+            this.haveDishes = false;
+            this.hungry = true;
+
         }
         public int posX;
         public int posY;
@@ -29,6 +33,10 @@ namespace Dining_room_WinForms
         public int money;
         public bool socialize;
         public int spontaneity;
+        public bool haveDishes;
+        public bool hungry;
+
+        public int skipSteps = 0;
 
         public void MoveLeft()
         {
@@ -92,68 +100,53 @@ namespace Dining_room_WinForms
             return true;
         }
 
-        public void MoveTo(int direction)
+        public void MoveTo(int[,] matrix, int destX, int destY)
         {
-            switch (direction)
+            if (skipSteps == 0)
             {
-                case 0:
-                    if (CheckPosLeft())
-                    {
-                        MoveLeft();
-                    }
-                    break;
-                case 1:
-                    if (CheckPosRight())
-                    {
-                        MoveRight();
-                    }
-                    break;
-                case 2:
-                    if (CheckPosTop())
-                    {
-                        MoveTop();
-                    }
-                    break;
-                case 3:
-                    if (CheckPosBottom())
-                    {
-                        MoveBottom();
-                    }
-                    break;
+                if (posY > destY)
+                {
+                    MoveTop();
+                    return;
+                }
+                if (posX > destX)
+                {
+                    MoveLeft();
+                    return;
+                }
+                if (posY < destY)
+                {
+                    MoveBottom();
+                    return;
+                }
+                if (posX < destX)
+                {
+                    MoveRight();
+                    return;
+                }
             }
+            else
+            {
+                skipSteps--;
+            }
+            
         }
 
-        public int Move(int[,] matrix, int random)
+        public void takeDishes()
         {
-            switch (random)
-            {
-                case 0:
-                    if (CheckPosLeft())
-                    {
-                        MoveLeft();
-                    }
-                    break;
-                case 1:
-                    if (CheckPosRight())
-                    {
-                        MoveRight();
-                    }
-                    break;
-                case 2:
-                    if (CheckPosTop())
-                    {
-                        MoveTop();
-                    }
-                    break;
-                case 3:
-                    if (CheckPosBottom())
-                    {
-                        MoveBottom();
-                    }
-                    break;
-            }
-            return random;
+            haveDishes = true;
         }
+
+        public void eat()
+        {
+            skipSteps = 200;
+        }
+
+        public void Move(int[,] matrix, int random)
+        {
+        }
+
+
 
 
     }

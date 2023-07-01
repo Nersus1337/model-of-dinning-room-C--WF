@@ -30,18 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.btnPause = new System.Windows.Forms.Button();
-            this.btnEditCanteen = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.trbTimer = new System.Windows.Forms.TrackBar();
+            this.btnEditCanteen = new System.Windows.Forms.Button();
+            this.btnPause = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbTimer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -65,14 +65,30 @@
             this.splitContainer1.SplitterDistance = 216;
             this.splitContainer1.TabIndex = 0;
             // 
-            // pictureBox1
+            // trbTimer
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1410, 1027);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.trbTimer.Location = new System.Drawing.Point(51, 173);
+            this.trbTimer.Name = "trbTimer";
+            this.trbTimer.Size = new System.Drawing.Size(104, 45);
+            this.trbTimer.TabIndex = 3;
+            // 
+            // btnEditCanteen
+            // 
+            this.btnEditCanteen.Location = new System.Drawing.Point(69, 111);
+            this.btnEditCanteen.Name = "btnEditCanteen";
+            this.btnEditCanteen.Size = new System.Drawing.Size(75, 23);
+            this.btnEditCanteen.TabIndex = 2;
+            this.btnEditCanteen.Text = "Edit canteen";
+            this.btnEditCanteen.UseVisualStyleBackColor = true;
+            // 
+            // btnPause
+            // 
+            this.btnPause.Location = new System.Drawing.Point(69, 69);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(75, 23);
+            this.btnPause.TabIndex = 1;
+            this.btnPause.Text = "Pause";
+            this.btnPause.UseVisualStyleBackColor = true;
             // 
             // btnStart
             // 
@@ -84,35 +100,19 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // btnPause
+            // pictureBox1
             // 
-            this.btnPause.Location = new System.Drawing.Point(69, 69);
-            this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(75, 23);
-            this.btnPause.TabIndex = 1;
-            this.btnPause.Text = "Pause";
-            this.btnPause.UseVisualStyleBackColor = true;
-            // 
-            // btnEditCanteen
-            // 
-            this.btnEditCanteen.Location = new System.Drawing.Point(69, 111);
-            this.btnEditCanteen.Name = "btnEditCanteen";
-            this.btnEditCanteen.Size = new System.Drawing.Size(75, 23);
-            this.btnEditCanteen.TabIndex = 2;
-            this.btnEditCanteen.Text = "Edit canteen";
-            this.btnEditCanteen.UseVisualStyleBackColor = true;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1410, 1027);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // timer1
             // 
-            this.timer1.Interval = 250;
+            this.timer1.Interval = 150;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // trbTimer
-            // 
-            this.trbTimer.Location = new System.Drawing.Point(51, 173);
-            this.trbTimer.Name = "trbTimer";
-            this.trbTimer.Size = new System.Drawing.Size(104, 45);
-            this.trbTimer.TabIndex = 3;
             // 
             // Form1
             // 
@@ -128,8 +128,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbTimer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
