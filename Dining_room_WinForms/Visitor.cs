@@ -25,6 +25,7 @@ namespace Dining_room_WinForms
 
             this.haveDishes = false;
             this.hungry = true;
+            this.paid = false;
 
         }
         public int posX;
@@ -35,6 +36,7 @@ namespace Dining_room_WinForms
         public int spontaneity;
         public bool haveDishes;
         public bool hungry;
+        public bool paid;
 
         public int skipSteps = 0;
 
@@ -100,50 +102,80 @@ namespace Dining_room_WinForms
             return true;
         }
 
-        public void MoveTo(int[,] matrix, int destX, int destY)
+        public int MoveTo(int[,] matrix, int destX, int destY)
         {
+            int thisStep = 0;
             if (skipSteps == 0)
             {
                 if (posY > destY)
                 {
                     MoveTop();
-                    return;
+                    thisStep = 1;
+                    return thisStep;
                 }
                 if (posX > destX)
                 {
                     MoveLeft();
-                    return;
+                    thisStep = 2;
+                    return thisStep;
                 }
                 if (posY < destY)
                 {
                     MoveBottom();
-                    return;
+                    thisStep = 3;
+                    return thisStep;
                 }
                 if (posX < destX)
                 {
                     MoveRight();
-                    return;
+                    thisStep = 4;
+                    return thisStep;
                 }
             }
             else
             {
                 skipSteps--;
             }
-            
+            return thisStep;
         }
 
         public void takeDishes()
         {
             haveDishes = true;
+            skipSteps = 50;//200
         }
 
         public void eat()
         {
-            skipSteps = 200;
+            skipSteps = 50;//200
         }
 
-        public void Move(int[,] matrix, int random)
+        public void pay()
         {
+            skipSteps = 10;//200
+        }
+
+        public void MoveDirection(int direction)
+        {
+            switch (direction)
+            {
+                case 0:
+                    break;
+                case 1:
+                    MoveTop();
+                    break; 
+                case 2:
+                    MoveLeft();
+                    break; 
+                case 3:
+                    MoveBottom();
+                    break; 
+                case 4:
+                    MoveRight();
+                    break;
+                    default:
+                    break;
+            }
         }
 
 

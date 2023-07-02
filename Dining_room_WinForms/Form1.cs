@@ -25,6 +25,7 @@ namespace Dining_room_WinForms
         List<Visitor> visitors = new List<Visitor>();
         List<Dish> dishes = new List<Dish>();
         List<Table> tables = new List<Table>();
+        Random random = new Random();
 
         private Graphics graphics;
         private int resolution = 20;
@@ -84,7 +85,7 @@ namespace Dining_room_WinForms
             //Cоздание стены для зоны раздачи
             for (int i = 0; i < rows; i++)
             {
-                matrix[i, 17] = 1;
+                matrix[i, 18] = 1;
             }
             //Cоздание разделения мойки от кухни
             for (int j = 0; j < cols; j++)
@@ -92,19 +93,30 @@ namespace Dining_room_WinForms
                 matrix[rows - 18, j] = 1;
             }
 
+
+
+
+            //Создание кассы
+            matrix[3, 19] = 6;
+            //Создание подносов
+            matrix[48, 18] = 7;
+
         }
 
         private void InitCanteenItems()
         {
             visitors.Add(new Visitor(47, 47, "Maksim", 8000, 2, false));
-            visitors.Add(new Visitor(45, 45, "Grigory", 8000, 3, true));
+            //visitors.Add(new Visitor(45, 45, "Grigory", 8000, 3, true));
             visitors.Add(new Visitor(43, 43, "Efim", 18000, 7, true));
 
-            dishes.Add(new Dish(20, 18, "Sup", 180, 2, 4));
-            dishes.Add(new Dish(25, 18, "Salad", 100, 5, 2));
-            dishes.Add(new Dish(30, 18, "Tea", 180, 2, 30));
-            dishes.Add(new Dish(35, 18, "Potato", 180, 2, 1));
-            dishes.Add(new Dish(33, 18, "Kotleta", 180, 2, 1));
+            dishes.Add(new Dish(20, 18, "Sup", 180, 2, 0));
+            dishes.Add(new Dish(25, 18, "Salad", 100, 5, 9));
+            dishes.Add(new Dish(30, 18, "Pechen'e", 80, 6, 30));
+            dishes.Add(new Dish(35, 18, "Potato", 180, 6, 6));
+            dishes.Add(new Dish(33, 18, "Kotleta", 100, 7, 6));
+            dishes.Add(new Dish(37, 18, "Tea", 40, 9, 30));
+            dishes.Add(new Dish(40, 18, "Coffee", 50, 9, 30));
+            dishes.Add(new Dish(44, 18, "Water", 20, 9, 200));
 
             tables.Add(new Table(5, 30));
             tables.Add(new Table(9, 30));
@@ -114,8 +126,6 @@ namespace Dining_room_WinForms
             tables.Add(new Table(25, 30));
             tables.Add(new Table(29, 30));
             tables.Add(new Table(33, 30));
-            //tables.Add(new Table(25, 30));
-            //tables.Add(new Table(25, 30));
         }
 
         private void NextStep()
@@ -126,14 +136,7 @@ namespace Dining_room_WinForms
             //Запись координат блюд
             foreach (Dish dish in dishes.ToList())
             {
-                if (dish.count != 0)//Если порции еще остались
-                {
-                    matrix[dish.posX, dish.posY] = 3;
-                }
-                else//Если порции закончились, то удаляем блюдо
-                {
-                    //dishes.Remove(dish);
-                }
+                matrix[dish.posX, dish.posY] = 3;
             }
             //Запись координат столиков
             foreach (Table table in tables.ToList())
@@ -148,22 +151,36 @@ namespace Dining_room_WinForms
             ///////////////////////////////////////////
             ///////////////////////////////////////////
             ///////////////////////////////////////////
-           
+
             //IMPORTANT
             //Движение посетителей
+            
             foreach (Visitor visitor in visitors)
             {
                 //Посетитель заходит в столовую и сразу идет за едой
-                if ((visitor.haveDishes==false) && (visitor.hungry==true))
+                if ((visitor.haveDishes == false) && (visitor.hungry == true) && (visitor.paid == false))
                 {
                     foreach (Dish dish in dishes)
                     {
                         if (dish.count > 0)
                         {
-                            visitor.MoveTo(matrix, dish.posX, dish.posY);
+
+                            int lastMove = 0;
+                            lastMove = visitor.MoveTo(matrix, dish.posX, dish.posY + 1);
+
+                            foreach (Visitor otherVisitor in visitors)
+                            {
+                                if ((otherVisitor.posX == visitor.posX) && (otherVisitor.posY == visitor.posY) && (otherVisitor.name != visitor.name) && (visitor.posX != dish.posX))
+                                {
+                                    visitor.MoveDirection(lastMove);
+                                }
+                            }
+
+
+
 
                             //Посетитель берет еду
-                            if ((visitor.posX == dish.posX) && (visitor.posY == dish.posY))
+                            if ((visitor.posX == dish.posX) && (visitor.posY == dish.posY + 1))
                             {
                                 dish.count--;
                                 visitor.takeDishes();
@@ -172,11 +189,23 @@ namespace Dining_room_WinForms
                             break;
                         }
                     }
-                        
+
                 }
-                
+
+                //Посетитель оплачивает блюда
+                if ((visitor.haveDishes == true) && (visitor.hungry == true) && (visitor.paid == false))
+                {
+                    visitor.MoveTo(matrix, 3, 19);
+                    if ((visitor.posX == 3) && (visitor.posY == 19))
+                    {
+                        visitor.paid = true;
+                        visitor.pay();
+                    }
+                    
+                }
+
                 //Посетитель идет с едой за стол
-                if ((visitor.haveDishes == true) && (visitor.hungry == true))
+                if ((visitor.haveDishes == true) && (visitor.hungry == true) && (visitor.paid == true))
                 {
                     foreach (Table table in tables)
                     {
@@ -197,9 +226,12 @@ namespace Dining_room_WinForms
                     }
                         
                 }
+
+                //Убирает поднос
+
                 
                 //Если посетитель поел, то он уходит
-                if ((visitor.hungry == false) && (visitor.haveDishes == false))
+                if ((visitor.hungry == false) && (visitor.haveDishes == false) && (visitor.paid == true))
                 {
                     visitor.MoveTo(matrix, 48, 48);//На выход
                 }
@@ -215,9 +247,9 @@ namespace Dining_room_WinForms
             {
                 matrix[visitor.posX, visitor.posY] = 2;
             }
-            //graphics.DrawString(Convert.ToString(visitors[countVisitors].name), new Font("Madani Thin", 8), Brushes.DarkRed, new PointF(i * resolution, j * resolution));
-            //countVisitors++;
-            //int countVisitors = 0;
+            
+            
+            int countVisitors = 0;
 
 
 
@@ -235,6 +267,8 @@ namespace Dining_room_WinForms
                     if (matrix[i, j] == 2)
                     {
                         graphics.FillEllipse(Brushes.LightSeaGreen, i * resolution, j * resolution, resolution, resolution);
+                        graphics.DrawString(Convert.ToString(visitors[countVisitors].name), new Font("Madani Thin", 8), Brushes.DarkRed, new PointF(i * resolution, j * resolution));
+                        countVisitors++;
                     }
                     //Рисование блюд
                     if (matrix[i, j] == 3)
@@ -251,6 +285,21 @@ namespace Dining_room_WinForms
                     {
                         graphics.FillRectangle(Brushes.Gray, i * resolution, j * resolution, resolution, resolution);
                     }
+
+                    //Рисование мойщика
+
+
+                    //Рисование кассы
+                    if (matrix[i, j] == 6)
+                    {
+                        graphics.FillRectangle(Brushes.Blue, i * resolution, j * resolution, resolution, resolution);
+                    }
+                    //Рисование подносов
+                    if (matrix[i, j] == 7)
+                    {
+                        graphics.FillRectangle(Brushes.LightGray, i * resolution, j * resolution, resolution, resolution);
+                    }
+
                     //Временная метка
                     if (matrix[i, j] == 10)
                     {
