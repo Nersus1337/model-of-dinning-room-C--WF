@@ -16,13 +16,15 @@ namespace Dining_room_WinForms
         {
             this.posX = posX;
             this.posY = posY;
-            this.posX = posX;
-            this.posY = posY;
             this.name = name;
             this.money = money;
             this.spontaneity = spontaneity;
             this.socialize = socialize;
+            this.costOfOrder = 0;
 
+            this.haveTray = false;
+            this.haveForksSpoons = false;
+            this.haveDrink = false;
             this.haveDishes = false;
             this.hungry = true;
             this.paid = false;
@@ -34,6 +36,11 @@ namespace Dining_room_WinForms
         public int money;
         public bool socialize;
         public int spontaneity;
+        public int costOfOrder;
+
+        public bool haveTray;
+        public bool haveForksSpoons;
+        public bool haveDrink;
         public bool haveDishes;
         public bool hungry;
         public bool paid;
@@ -141,8 +148,7 @@ namespace Dining_room_WinForms
 
         public void takeDishes()
         {
-            haveDishes = true;
-            skipSteps = 50;//200
+            skipSteps = 5;//200
         }
 
         public void eat()
@@ -152,7 +158,7 @@ namespace Dining_room_WinForms
 
         public void pay()
         {
-            skipSteps = 10;//200
+            skipSteps = 30;//200
         }
 
         public void MoveDirection(int direction)
@@ -178,8 +184,14 @@ namespace Dining_room_WinForms
             }
         }
 
+        internal void takeTray()
+        {
+            skipSteps = 7;//200
+        }
 
-
-
+        internal void takeDrink()
+        {
+            haveDrink = true;
+        }
     }
 }
