@@ -153,12 +153,12 @@ namespace Dining_room_WinForms
 
         public void eat()
         {
-            skipSteps = 50;//200
+            skipSteps = 30;//200
         }
 
         public void pay()
         {
-            skipSteps = 30;//200
+            skipSteps = 10;//200
         }
 
         public void MoveDirection(int direction)

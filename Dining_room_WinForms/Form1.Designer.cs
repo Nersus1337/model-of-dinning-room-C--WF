@@ -80,6 +80,7 @@
             this.btnEditCanteen.TabIndex = 2;
             this.btnEditCanteen.Text = "Edit canteen";
             this.btnEditCanteen.UseVisualStyleBackColor = true;
+            this.btnEditCanteen.Click += new System.EventHandler(this.btnEditCanteen_Click);
             // 
             // btnPause
             // 
@@ -89,6 +90,7 @@
             this.btnPause.TabIndex = 1;
             this.btnPause.Text = "Pause";
             this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
             // btnStart
             // 
@@ -108,6 +110,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(1410, 1027);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
             // 
             // timer1
             // 
