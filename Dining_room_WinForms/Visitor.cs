@@ -158,7 +158,7 @@ namespace Dining_room_WinForms
 
         public void pay()
         {
-            skipSteps = 10;//200
+            skipSteps = 0;//200
         }
 
         public void MoveDirection(int direction)

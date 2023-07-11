@@ -168,12 +168,12 @@ namespace Dining_room_WinForms
                 matrix[44, 8] = 11;
                 matrix[44, 9] = 11;
 
-
-            for (int i = 21; i < 47; i++)
+            //Создание кухонного стола для блюд
+            for (int i = 21; i < 49; i++)
             {
                 matrix[i, 12] = 11;
             }
-            for (int i = 21; i < 47; i++)
+            for (int i = 21; i < 49; i++)
             {
                 matrix[i, 13] = 11;
             }
@@ -207,11 +207,14 @@ namespace Dining_room_WinForms
             drinks.Add(new Drink(41, 18, "Кофе", 50, 10, 30));
             drinks.Add(new Drink(43, 18, "Вода", 20, 1, 200));
 
-            citchenDishes.Add(new CitchenDish(28, 13, "Салат", 55));
-            citchenDishes.Add(new CitchenDish(31, 13, "Котлета", 45));
-            citchenDishes.Add(new CitchenDish(34, 13, "Суп", 35));
-            citchenDishes.Add(new CitchenDish(37, 13, "Лапша", 25));
-            citchenDishes.Add(new CitchenDish(40, 13, "Пюре", 65));
+            citchenDishes.Add(new CitchenDish(28, 13, "Салат", 100));
+            citchenDishes.Add(new CitchenDish(31, 13, "Котлета", 100));
+            citchenDishes.Add(new CitchenDish(34, 13, "Суп", 100));
+            citchenDishes.Add(new CitchenDish(37, 13, "Лапша", 100));
+            citchenDishes.Add(new CitchenDish(40, 13, "Пюре", 100));
+
+            citchenDishes.Add(new CitchenDish(46, 13, "Подносы", 100));
+            citchenDishes.Add(new CitchenDish(48, 13, "Вилки, ложки", 100));
 
             if (userMap == false)
             {
@@ -694,10 +697,63 @@ namespace Dining_room_WinForms
                             break;
                         }
                     }
+                    if (currentDish == "None")
+                    {
+                        if (trays < 10)
+                        {
+                            currentDish = "Trays";
+                            //break;
+                        }
+                    }
+                    if (currentDish == "None")
+                    {
+                        if (forksSpoons < 10)
+                        {
+                            currentDish = "forksSpoons";
+                        }
+                    }
+
+                }
+                
+                if ((currentDish == "Trays") && (cook.haveDishes == false))
+                {
+                    cook.MoveTo(48, 13 + 1);
+                    if ((cook.posX == 48) && (cook.posY == 13 + 1))
+                    {
+                        cook.haveDishes = true;
+                    }
                 }
 
-                
+                if ((currentDish == "Trays") && (cook.haveDishes == true))
+                {
+                    cook.MoveTo(48, 18 - 1);
+                    if ((cook.posX == 48) && (cook.posY == 18 - 1))
+                    {
+                        cook.haveDishes = false;
+                        currentDish = "None";
+                        trays = 20;
+                    }
+                }
 
+                if ((currentDish == "forksSpoons") && (cook.haveDishes == false))
+                {
+                    cook.MoveTo(46, 13 + 1);
+                    if ((cook.posX == 46) && (cook.posY == 13 + 1))
+                    {
+                        cook.haveDishes = true;
+                    }
+                }
+
+                if ((currentDish == "forksSpoons") && (cook.haveDishes == true))
+                {
+                    cook.MoveTo(46, 18 - 1);
+                    if ((cook.posX == 46) && (cook.posY == 18 - 1))
+                    {
+                        cook.haveDishes = false;
+                        currentDish = "None";
+                        forksSpoons = 20;
+                    }
+                }
 
                 foreach (CitchenDish citchendish in citchenDishes)
                 {
