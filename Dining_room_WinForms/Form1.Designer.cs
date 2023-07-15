@@ -36,6 +36,7 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnPlay = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -53,6 +54,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnPlay);
             this.splitContainer1.Panel1.Controls.Add(this.trbTimer);
             this.splitContainer1.Panel1.Controls.Add(this.btnEditCanteen);
             this.splitContainer1.Panel1.Controls.Add(this.btnPause);
@@ -67,14 +69,15 @@
             // 
             // trbTimer
             // 
-            this.trbTimer.Location = new System.Drawing.Point(51, 173);
+            this.trbTimer.Location = new System.Drawing.Point(51, 202);
             this.trbTimer.Name = "trbTimer";
             this.trbTimer.Size = new System.Drawing.Size(104, 45);
             this.trbTimer.TabIndex = 3;
+            this.trbTimer.Scroll += new System.EventHandler(this.trbTimer_Scroll);
             // 
             // btnEditCanteen
             // 
-            this.btnEditCanteen.Location = new System.Drawing.Point(69, 111);
+            this.btnEditCanteen.Location = new System.Drawing.Point(69, 139);
             this.btnEditCanteen.Name = "btnEditCanteen";
             this.btnEditCanteen.Size = new System.Drawing.Size(75, 23);
             this.btnEditCanteen.TabIndex = 2;
@@ -84,7 +87,7 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(69, 69);
+            this.btnPause.Location = new System.Drawing.Point(69, 101);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 1;
@@ -117,6 +120,16 @@
             this.timer1.Interval = 150;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnPlay
+            // 
+            this.btnPlay.Location = new System.Drawing.Point(69, 63);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(75, 23);
+            this.btnPlay.TabIndex = 4;
+            this.btnPlay.Text = "Play";
+            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -146,6 +159,7 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.TrackBar trbTimer;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnPlay;
     }
 }
 

@@ -17,6 +17,7 @@ namespace Dining_room_WinForms
         public Form1()
         {
             InitializeComponent();
+            btnEditCanteen.Visible = false;
         }
         private void ClearPictureBox()
         {
@@ -114,15 +115,12 @@ namespace Dining_room_WinForms
                 matrix[rows - 18, j] = 0;
             }
 
-
-                matrix[25, 4] = 11;
                 matrix[25, 5] = 11;
                 matrix[25, 6] = 11;
                 matrix[25, 7] = 11;
                 matrix[25, 8] = 11;
                 matrix[25, 9] = 11;
 
-                matrix[26, 4] = 11;
                 matrix[26, 5] = 11;
                 matrix[26, 6] = 11;
                 matrix[26, 7] = 11;
@@ -169,11 +167,11 @@ namespace Dining_room_WinForms
                 matrix[44, 9] = 11;
 
             //Создание кухонного стола для блюд
-            for (int i = 21; i < 49; i++)
+            for (int i = 21; i < 50; i++)
             {
                 matrix[i, 12] = 11;
             }
-            for (int i = 21; i < 49; i++)
+            for (int i = 21; i < 50; i++)
             {
                 matrix[i, 13] = 11;
             }
@@ -197,35 +195,39 @@ namespace Dining_room_WinForms
             //visitors.Add(new Visitor(48, 47, "Grigory", 8000, 3, true));
             //visitors.Add(new Visitor(48, 48, "Efim", 18000, 7, true));
 
-            dishes.Add(new Dish(28, 18, "Салат", 180, 8, 10));
-            dishes.Add(new Dish(30, 18, "Котлета", 100, 5, 20));
-            dishes.Add(new Dish(32, 18, "Суп", 80, 8, 10));
-            dishes.Add(new Dish(34, 18, "Лапша", 180, 6, 20));
+            dishes.Add(new Dish(28, 18, "Салат", 180, 8, 20));
+            dishes.Add(new Dish(30, 18, "Котлета", 100, 7, 20));
+            dishes.Add(new Dish(32, 18, "Суп", 80, 4, 20));
+            dishes.Add(new Dish(34, 18, "Лапша", 180, 8, 20));
             dishes.Add(new Dish(36, 18, "Пюре", 100, 7, 20));
 
-            drinks.Add(new Drink(39, 18, "Чай", 40, 1, 30));
-            drinks.Add(new Drink(41, 18, "Кофе", 50, 10, 30));
-            drinks.Add(new Drink(43, 18, "Вода", 20, 1, 200));
+            drinks.Add(new Drink(39, 18, "Чай", 40, 6, 20));
+            drinks.Add(new Drink(41, 18, "Кофе", 50, 8, 20));
+            drinks.Add(new Drink(43, 18, "Вода", 20, 2, 20));
 
-            citchenDishes.Add(new CitchenDish(28, 13, "Салат", 100));
-            citchenDishes.Add(new CitchenDish(31, 13, "Котлета", 100));
-            citchenDishes.Add(new CitchenDish(34, 13, "Суп", 100));
-            citchenDishes.Add(new CitchenDish(37, 13, "Лапша", 100));
-            citchenDishes.Add(new CitchenDish(40, 13, "Пюре", 100));
+            citchenDishes.Add(new CitchenDish(22, 13, "Салат", 100));
+            citchenDishes.Add(new CitchenDish(24, 13, "Котлета", 100));
+            citchenDishes.Add(new CitchenDish(26, 13, "Суп", 100));
+            citchenDishes.Add(new CitchenDish(28, 13, "Лапша", 100));
+            citchenDishes.Add(new CitchenDish(30, 13, "Пюре", 100));
+
+            citchenDishes.Add(new CitchenDish(39, 13, "Чай", 100));
+            citchenDishes.Add(new CitchenDish(41, 13, "Кофе", 100));
+            citchenDishes.Add(new CitchenDish(43, 13, "Вода", 100));
 
             citchenDishes.Add(new CitchenDish(46, 13, "Подносы", 100));
             citchenDishes.Add(new CitchenDish(48, 13, "Вилки, ложки", 100));
 
             if (userMap == false)
             {
-                tables.Add(new Table(5, 30));
-                tables.Add(new Table(9, 30));
-                tables.Add(new Table(13, 30));
-                tables.Add(new Table(17, 30));
-                tables.Add(new Table(21, 30));
-                tables.Add(new Table(25, 30));
-                tables.Add(new Table(29, 30));
-                tables.Add(new Table(33, 30));
+                //tables.Add(new Table(5, 30));
+                //tables.Add(new Table(9, 30));
+                //tables.Add(new Table(13, 30));
+                //tables.Add(new Table(17, 30));
+                //tables.Add(new Table(21, 30));
+                //tables.Add(new Table(25, 30));
+                //tables.Add(new Table(29, 30));
+                //tables.Add(new Table(33, 30));
             }
 
             cooks.Add(new Cook(10, 10));
@@ -233,7 +235,7 @@ namespace Dining_room_WinForms
 
             washers.Add(new Washer(66, 10));
 
-            trays = 15;//Подносы
+            trays = 20;//Подносы
             forksSpoons = 20;//Вилки ложки
 
 
@@ -244,136 +246,136 @@ namespace Dining_room_WinForms
             switch (numberVisitors)
             {
                 case 0:
-                    visitors.Add(new Visitor(48, 46, "Максим", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Максим", 8000, 2, false));
                     break;
                 case 1:
-                    visitors.Add(new Visitor(48, 47, "Григорий", 8000, 3, true));
+                    visitors.Add(new Visitor(48, 49, "Григорий", 8000, 3, true));
                     break;
                 case 2:
-                    visitors.Add(new Visitor(48, 48, "Ефим", 18000, 7, true));
+                    visitors.Add(new Visitor(48, 49, "Ефим", 18000, 7, true));
                     break;
                 case 3:
-                    visitors.Add(new Visitor(48, 46, "Аркадий", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Аркадий", 8000, 2, false));
                     break;
                 case 4:
-                    visitors.Add(new Visitor(48, 46, "Владислав", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Владислав", 8000, 2, false));
                     break;
                 case 5:
-                    visitors.Add(new Visitor(48, 46, "Илья", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Илья", 8000, 2, false));
                     break;
                 case 6:
-                    visitors.Add(new Visitor(48, 46, "Богдан", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Богдан", 8000, 2, false));
                     break;
                 case 7:
-                    visitors.Add(new Visitor(48, 46, "Михаил", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Михаил", 8000, 2, false));
                     break;
                 case 8:
-                    visitors.Add(new Visitor(48, 46, "Петр", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Петр", 8000, 2, false));
                     break;
                 case 9:
-                    visitors.Add(new Visitor(48, 46, "Ян", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Ян", 8000, 2, false));
                     break;
                 case 10:
-                    visitors.Add(new Visitor(48, 46, "Давид", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Давид", 8000, 2, false));
                     break;
                 case 11:
-                    visitors.Add(new Visitor(48, 46, "Валерий", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Валерий", 8000, 2, false));
                     break;
                 case 12:
-                    visitors.Add(new Visitor(48, 47, "Александр", 8000, 3, true));
+                    visitors.Add(new Visitor(48, 49, "Александр", 8000, 3, true));
                     break;
                 case 13:
-                    visitors.Add(new Visitor(48, 48, "Алексей", 18000, 7, true));
+                    visitors.Add(new Visitor(48, 49, "Алексей", 18000, 7, true));
                     break;
                 case 14:
-                    visitors.Add(new Visitor(48, 46, "Наталья", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Наталья", 8000, 2, false));
                     break;
                 case 15:
-                    visitors.Add(new Visitor(48, 46, "Дарья", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Дарья", 8000, 2, false));
                     break;
                 case 16:
-                    visitors.Add(new Visitor(48, 46, "Валерия", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Валерия", 8000, 2, false));
                     break;
                 case 17:
-                    visitors.Add(new Visitor(48, 46, "Ангелина", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Ангелина", 8000, 2, false));
                     break;
                 case 18:
-                    visitors.Add(new Visitor(48, 46, "Анастасия", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Анастасия", 8000, 2, false));
                     break;
                 case 19:
-                    visitors.Add(new Visitor(48, 46, "Александра", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Александра", 8000, 2, false));
                     break;
                 case 20:
-                    visitors.Add(new Visitor(48, 46, "Аня", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Аня", 8000, 2, false));
                     break;
                 case 21:
-                    visitors.Add(new Visitor(48, 46, "Татьяна", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Татьяна", 8000, 2, false));
                     break;
                 case 22:
-                    visitors.Add(new Visitor(48, 46, "Виктория", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Виктория", 8000, 2, false));
                     break;
                 case 23:
-                    visitors.Add(new Visitor(48, 47, "Елизавета", 8000, 3, true));
+                    visitors.Add(new Visitor(48, 49, "Елизавета", 8000, 3, true));
                     break;
                 case 24:
-                    visitors.Add(new Visitor(48, 48, "Ксения", 18000, 7, true));
+                    visitors.Add(new Visitor(48, 49, "Ксения", 18000, 7, true));
                     break;
                 case 25:
-                    visitors.Add(new Visitor(48, 46, "Вероника", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Вероника", 8000, 2, false));
                     break;
                 case 26:
-                    visitors.Add(new Visitor(48, 46, "Евгения", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Евгения", 8000, 2, false));
                     break;
                 case 27:
-                    visitors.Add(new Visitor(48, 46, "Евгений", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Евгений", 8000, 2, false));
                     break;
                 case 28:
-                    visitors.Add(new Visitor(48, 46, "Антон", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Антон", 8000, 2, false));
                     break;
                 case 29:
-                    visitors.Add(new Visitor(48, 46, "Игорь", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Игорь", 8000, 2, false));
                     break;
                 case 30:
-                    visitors.Add(new Visitor(48, 46, "Ахмед", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Ахмед", 8000, 2, false));
                     break;
                 case 31:
-                    visitors.Add(new Visitor(48, 46, "Джон", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Джон", 8000, 2, false));
                     break;
                 case 32:
-                    visitors.Add(new Visitor(48, 46, "Афродита", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Афродита", 8000, 2, false));
                     break;
                 case 33:
-                    visitors.Add(new Visitor(48, 46, "Захар", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Захар", 8000, 2, false));
                     break;
                 case 34:
-                    visitors.Add(new Visitor(48, 47, "Данил", 8000, 3, true));
+                    visitors.Add(new Visitor(48, 49, "Данил", 8000, 3, true));
                     break;
                 case 35:
-                    visitors.Add(new Visitor(48, 48, "Артур", 18000, 7, true));
+                    visitors.Add(new Visitor(48, 49, "Артур", 18000, 7, true));
                     break;
                 case 36:
-                    visitors.Add(new Visitor(48, 46, "Иван", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Иван", 8000, 2, false));
                     break;
                 case 37:
-                    visitors.Add(new Visitor(48, 46, "Афанасий", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Афанасий", 8000, 2, false));
                     break;
                 case 38:
-                    visitors.Add(new Visitor(48, 46, "Виктор", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Виктор", 8000, 2, false));
                     break;
                 case 39:
-                    visitors.Add(new Visitor(48, 46, "Полина", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Полина", 8000, 2, false));
                     break;
                 case 40:
-                    visitors.Add(new Visitor(48, 46, "Юлия", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Юлия", 8000, 2, false));
                     break;
                 case 41:
-                    visitors.Add(new Visitor(48, 46, "Ольга", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Ольга", 8000, 2, false));
                     break;
                 case 42:
-                    visitors.Add(new Visitor(48, 46, "Надежда", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Надежда", 8000, 2, false));
                     break;
                 case 43:
-                    visitors.Add(new Visitor(48, 46, "Лина", 8000, 2, false));
+                    visitors.Add(new Visitor(48, 49, "Лина", 8000, 2, false));
                     break;
             }
         }
@@ -384,8 +386,7 @@ namespace Dining_room_WinForms
             InitDefaultMap();
 
             //Случайное появление посетителя
-            
-            if (random.Next(10) == 1)
+            if (random.Next(25) == 1)
             {
                 getVisitor(numberVisitors);
                 numberVisitors++;
@@ -394,7 +395,6 @@ namespace Dining_room_WinForms
                     numberVisitors = 0;
                 }
             }
-
 
             //Запись координат блюд
             foreach (Dish dish in dishes.ToList())
@@ -435,7 +435,6 @@ namespace Dining_room_WinForms
             
             //IMPORTANT
             //Движение посетителей
-
             foreach (Visitor visitor in visitors.ToList())
             {
                 bool flag = true;//Свободно ли в следующей клетке
@@ -603,7 +602,7 @@ namespace Dining_room_WinForms
                 {
                     foreach (Visitor otherVisitor in visitors)
                     {
-                        if ((otherVisitor.posX == visitor.posX - 1))
+                        if ((otherVisitor.posX == visitor.posX - 1) && (otherVisitor.posY == visitor.posY))
                         {
                             flag = false;
                         }
@@ -676,8 +675,8 @@ namespace Dining_room_WinForms
                 //Если посетитель поел, то он уходит
                 if ((visitor.hungry == false) && (visitor.haveDishes == false) && (visitor.paid == true))
                 {
-                    visitor.MoveTo(matrix, 48, 50);//На выход
-                    if ((visitor.posX == 48) && (visitor.posY == 50))
+                    visitor.MoveTo(matrix, 50, 48);//На выход
+                    if ((visitor.posX == 50) && (visitor.posY == 48))
                     {
                         visitors.Remove(visitor);
                     }
@@ -712,6 +711,19 @@ namespace Dining_room_WinForms
                             currentDish = "forksSpoons";
                         }
                     }
+
+                    if (currentDish == "None")
+                    {
+                        foreach (Drink drink in drinks)
+                        {
+                            if (drink.count < 10)
+                            {
+                                currentDish = drink.name;
+                                break;
+                            }
+                        }
+                    }
+                    
 
                 }
                 
@@ -785,6 +797,21 @@ namespace Dining_room_WinForms
                         }
                         
                     }
+                    foreach (Drink drink in drinks)
+                    {
+                        if (drink.name == currentDish)
+                        {
+                            cook.MoveTo(drink.posX, drink.posY - 1);
+                            if ((cook.posX == drink.posX) && (cook.posY == drink.posY - 1))
+                            {
+                                cook.haveDishes = false;
+                                drink.count = 20;
+                                currentDish = "None";
+                            }
+                            break;
+                        }
+
+                    }
                 }
 
             }
@@ -793,8 +820,8 @@ namespace Dining_room_WinForms
             {
                 if (dirtyTrays > 0)
                 {
-                    washer.MoveTo(64, 18 - 1);
-                    if ((washer.posX == 64) && (washer.posY == 18 - 1))
+                    washer.MoveTo(62, 18 - 1);
+                    if ((washer.posX == 62) && (washer.posY == 18 - 1))
                     {
                         washer.takeTrays();
                         washer.haveTrays = true;
@@ -803,11 +830,12 @@ namespace Dining_room_WinForms
                 }
                 if (washer.haveTrays == true)
                 {
-                    washer.MoveTo(60 + 1, 12);
-                    if ((washer.posX == 60 + 1) && (washer.posY == 12))
+                    washer.MoveTo(60 + 1, 10);
+                    if ((washer.posX == 60 + 1) && (washer.posY == 10))
                     {
                         washer.washingTrays();
                         washer.haveTrays = false;
+                        
                     }
                 }
             }
@@ -928,7 +956,7 @@ namespace Dining_room_WinForms
                     if (matrix[i, j] == 19)
                     {
                         graphics.FillEllipse(Brushes.Yellow, i * resolution, j * resolution, resolution, resolution);
-                        graphics.DrawString(Convert.ToString(cash), new Font("Madani Thin", 8), Brushes.Black, new PointF((3 - 1) * resolution, 19 * resolution));
+                        graphics.DrawString(Convert.ToString(cash), new Font("Madani Thin", 8), Brushes.Black, new PointF((2 - 1) * resolution, 19 * resolution));
                     }
 
                 }
@@ -953,14 +981,32 @@ namespace Dining_room_WinForms
         {
             if (editMap == true)
             {
+                graphics.FillRectangle(Brushes.Gray, e.X / resolution * resolution, e.Y / resolution * resolution, resolution, resolution);
+                graphics.FillRectangle(Brushes.Red, 5 * resolution, 5 * resolution, resolution, resolution);
+                pictureBox1.Refresh();
+                //pictureBox1.Update();
                 userMap = true;
                 tables.Add(new Table(e.X / resolution, e.Y / resolution));
+                
             }
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+            btnEditCanteen.Visible = true;
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+            btnEditCanteen.Visible = false;
+            editMap = false;
+        }
+
+        private void trbTimer_Scroll(object sender, EventArgs e)
+        {
+            //timer1.Interval = trbTimer.Value();
         }
     }
 }

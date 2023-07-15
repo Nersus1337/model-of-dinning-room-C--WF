@@ -11,7 +11,7 @@ namespace Dining_room_WinForms
     {
         private int rows = 72;
         private int cols = 50;
-
+        
         public Visitor(int posX, int posY, string name, int money, int spontaneity, bool socialize)
         {
             this.posX = posX;
@@ -114,22 +114,16 @@ namespace Dining_room_WinForms
             int thisStep = 0;
             if (skipSteps == 0)
             {
-                if (posY > destY)
-                {
-                    MoveTop();
-                    thisStep = 1;
-                    return thisStep;
-                }
-                if (posX > destX)
-                {
-                    MoveLeft();
-                    thisStep = 2;
-                    return thisStep;
-                }
                 if (posY < destY)
                 {
                     MoveBottom();
                     thisStep = 3;
+                    return thisStep;
+                }
+                if (posY > destY)
+                {
+                    MoveTop();
+                    thisStep = 1;
                     return thisStep;
                 }
                 if (posX < destX)
@@ -138,6 +132,13 @@ namespace Dining_room_WinForms
                     thisStep = 4;
                     return thisStep;
                 }
+                if (posX > destX)
+                {
+                    MoveLeft();
+                    thisStep = 2;
+                    return thisStep;
+                }
+
             }
             else
             {
@@ -153,12 +154,12 @@ namespace Dining_room_WinForms
 
         public void eat()
         {
-            skipSteps = 30;//200
+            skipSteps = 80;//200
         }
 
         public void pay()
         {
-            skipSteps = 0;//200
+            skipSteps = 10;//200
         }
 
         public void MoveDirection(int direction)
@@ -191,6 +192,7 @@ namespace Dining_room_WinForms
 
         internal void takeDrink()
         {
+            skipSteps = 5;
             haveDrink = true;
         }
     }
